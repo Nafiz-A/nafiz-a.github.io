@@ -1,43 +1,618 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Nafiz" />
-    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/pics.nfztravel/home/globe1.jpg" />
-    <link rel="icon" href="https://s3-ap-southeast-1.amazonaws.com/pics.nfztravel/logo/favicon.ico">
-    <title>Nafiz</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> 
-<style>
-@font-face {font-family: 'Rancho';font-style: normal;font-weight: 400;font-display: swap;
-  src: url(https://fonts.gstatic.com/s/rancho/v11/46kulbzmXjLaqZRVam_hVUdI1w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-a{text-decoration: none;}.logotxt{font-family:'Rancho', cursive;font-size:21px;color: black !important;}.logotxt:hover{font-size: 22px;text-shadow:2px 2px 2px brown;}.title{font-size: 12px;font-weight: bold;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <!-- Google Fonts & Bootstrap (light) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="https://s3-ap-southeast-1.amazonaws.com/pics.nfztravel/logo/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f9f3f0;  /* warm, soft base */
+      color: #1e1e2a;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* header – clean & airy */
+    header {
+      background: rgba(255, 245, 240, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(180, 120, 100, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo-holder .logo-text {
+      font-family: 'Rancho', cursive;
+      font-size: 1.9rem;
+      color: #4d2e1b;
+      letter-spacing: 1px;
+      transition: 0.2s;
+    }
+    .logo-holder .logo-text:hover {
+      text-shadow: 2px 2px 8px rgba(160, 100, 70, 0.25);
+      transform: scale(1.02);
+    }
+    nav ul {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav ul li a {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #3a2a22;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      padding-bottom: 4px;
+    }
+    nav ul li a:hover {
+      border-bottom-color: #b0735a;
+      color: #2f1c14;
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #3a2a22;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    /* hero – combined vibe */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 3rem 0 2rem;
+      gap: 2rem;
+    }
+    .hero-blue {
+      flex: 1 1 300px;
+    }
+    .hero-blue h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #281f1a;
+    }
+    .hero-blue h1 small {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #775544;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+    }
+    .hero-blue p {
+      font-size: 1rem;
+      color: #3f2e25;
+      max-width: 480px;
+      margin-top: 0.6rem;
+      background: rgba(235, 215, 200, 0.3);
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+      display: inline-block;
+    }
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .social-links a img {
+      width: 44px;
+      height: 44px;
+      border-radius: 30px;
+      background: #f2e3da;
+      padding: 6px;
+      transition: 0.25s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+    .social-links a img:hover {
+      transform: translateY(-5px) scale(1.04);
+      background: #f0dbcf;
+      box-shadow: 0 8px 18px rgba(130, 80, 60, 0.15);
+    }
+    .hero-yellow {
+      flex: 0 0 260px;
+      text-align: center;
+    }
+    .hero-yellow img {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
+      box-shadow: 0 20px 35px -8px rgba(90, 60, 40, 0.2);
+      border: 4px solid #f6e3d8;
+      transition: 0.3s;
+      object-fit: cover;
+    }
+    .hero-yellow img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 25px 40px -6px rgba(110, 70, 50, 0.25);
+    }
+    /* marquee / logos */
+    .logos {
+      padding: 1.8rem 0 1rem;
+    }
+    .marquee {
+      overflow: hidden;
+      background: rgba(235, 215, 200, 0.25);
+      padding: 1rem 0;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+    }
+    .track {
+      display: flex;
+      gap: 2.5rem;
+      animation: scroll 24s linear infinite;
+      width: max-content;
+    }
+    .track img {
+      height: 54px;
+      width: auto;
+      filter: grayscale(0.1) brightness(0.98);
+      transition: 0.2s;
+      opacity: 0.8;
+    }
+    .track img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    /* work / projects */
+    .work-experience {
+      padding: 2.8rem 0 2rem;
+    }
+    .work-experience h2 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #2b1d17;
+      border-left: 6px solid #bf8b74;
+      padding-left: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+    .jobs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .jobs article {
+      background: rgba(250, 240, 235, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 1.2rem 1.2rem 1.8rem;
+      border-radius: 32px;
+      transition: 0.2s;
+      border: 1px solid rgba(200, 160, 140, 0.2);
+      box-shadow: 0 6px 18px rgba(130, 80, 60, 0.04);
+    }
+    .jobs article:hover {
+      background: #fef6f0;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -10px rgba(100, 70, 50, 0.1);
+    }
+    .jobs article figure {
+      margin: 0 0 0.8rem;
+    }
+    .jobs article figure img {
+      border-radius: 28px;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #ecd9ce;
+      border: 2px solid #f3e0d6;
+    }
+    .jobs article figure figcaption {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #715a4a;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+    .jobs article h3 {
+      font-size: 1.4rem;
+      margin: 0.3rem 0 0.1rem;
+      font-weight: 600;
+      color: #2f1d14;
+    }
+    .jobs article h3 a {
+      border-bottom: 2px dotted #c9aa99;
+    }
+    .jobs article h3 a:hover {
+      color: #8f5f48;
+      border-bottom-color: #8f5f48;
+    }
+    .jobs article div a {
+      font-size: 0.9rem;
+      color: #7f5f4c;
+      font-weight: 500;
+      background: #efddd2;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      display: inline-block;
+    }
+    .jobs article p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #3e2d23;
+    }
+    /* skills */
+    .holder-blue {
+      background: #f4e7df;
+      padding: 2rem 2.2rem;
+      border-radius: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      backdrop-filter: blur(2px);
+      box-shadow: inset 0 1px 20px rgba(180, 130, 110, 0.08);
+    }
+    .left-column {
+      flex: 2;
+      min-width: 200px;
+    }
+    .left-column h3 {
+      font-weight: 600;
+      margin: 0.8rem 0 0.4rem;
+      color: #4d3226;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #dcc1b2;
+      padding-bottom: 0.2rem;
+      display: inline-block;
+    }
+    .left-column ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 0.8rem;
+    }
+    .left-column ul li {
+      background: #fcf3ed;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #3d2b21;
+      border: 1px solid #e6d0c2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+    .right-column {
+      flex: 1;
+      min-width: 180px;
+      background: #fcf3ed;
+      padding: 1rem 1.8rem;
+      border-radius: 40px;
+      border: 1px solid #e6d0c2;
+    }
+    .right-column h3 {
+      font-weight: 600;
+      color: #4d3226;
+    }
+    .right-column p {
+      font-size: 0.95rem;
+      color: #3f2d23;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      background: #b07b64;
+      color: white;
+      border: none;
+      transition: 0.2s;
+      box-shadow: 0 4px 12px rgba(130, 80, 60, 0.2);
+    }
+    .button:hover {
+      background: #9a6b55;
+      transform: scale(1.02);
+      color: white;
+    }
+    .button.white {
+      background: #f2e3da;
+      color: #3d2b21;
+      box-shadow: none;
+    }
+    .button.white:hover {
+      background: #edd7cb;
+    }
+    .call-to-action {
+      margin-top: 0.8rem;
+    }
+    /* responsive */
+    @media (max-width: 760px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(250, 240, 235, 0.96);
+        backdrop-filter: blur(6px);
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 1.5rem 2rem;
+        border-radius: 40px;
+        gap: 1rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        border: 1px solid #e4cec0;
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .hero-blue p {
+        max-width: 100%;
+      }
+      .social-links {
+        justify-content: center;
+      }
+      .hero-yellow {
+        flex: unset;
+        width: 100%;
+      }
+      .hero-yellow img {
+        max-width: 180px;
+      }
+      .holder-blue {
+        flex-direction: column;
+        padding: 1.8rem;
+      }
+      .jobs {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* micro details */
+    .border-top {
+      border-top: 1px solid rgba(160, 120, 100, 0.15);
+    }
+    .my-5 {
+      margin: 2rem 0;
+    }
+    .logotxt {
+      font-family: 'Rancho', cursive;
+      font-size: 1.4rem;
+      color: #2f1d14 !important;
+      transition: 0.15s;
+    }
+    .logotxt:hover {
+      text-shadow: 2px 2px 4px rgba(140, 90, 70, 0.2);
+    }
+    .productFavicon {
+      width: 28px;
+      height: 28px;
+      border-radius: 30px;
+      margin-right: 6px;
+      background: #f1dfd4;
+      padding: 2px;
+    }
+    footer {
+      background: #f4e7df;
+      border-radius: 60px 60px 0 0;
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+    }
+    footer a {
+      font-family: 'Rancho', cursive;
+      font-size: 1.1rem;
+      color: #3f2a1e;
+    }
+    footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+    .footer-cred {
+      background: #fcf3ed;
+      padding: 0.2rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #decbc0;
+      font-size: 0.8rem;
+    }
+    .footer-cred a {
+      font-family: inherit;
+      color: #7f5a48;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
-<div class="text-center" style="height: 100vh;padding-top: 9vh;background-color: rgb(252, 216, 216);">
-    <span style='font-size:50px'>😊</span>
-    <h5 class="my-2 pb-1">Nafiz</h5>
-    <p class="title">working on helpful & innovative products 🚀</p>
-    <br>
-    <img class="productFavicon" src="https://www.google.com/s2/favicons?domain=http://www.nfztravel.com">
-    <a href="http://www.nfztravel.com/" target="_blank" class="logotxt">NfzTravel</a><br>
-    <img class="productFavicon" src="https://www.google.com/s2/favicons?domain=http://www.backtobarter.co/">
-    <a href="https://backtobarter.herokuapp.com/" target="_blank" class="logotxt"><s>Digital Bartering</s></a>
- 
-  <div class="container border-top my-5">
-          <p class="">📄</p>
-          <h6>Full-Stack Web Development</h6> <a href="https://drive.google.com/file/d/1L_atBaMQvnncTLu8UeGqjJe580TAKnp5/view?usp=sharing" 
-          target="_blank"class="border-bottom" style="color:brown;font: bolder;font-style: italic;">Credential URL</a><br>
-          <img class="productFavicon" src="https://www.google.com/s2/favicons?domain=https://www.nextacademy.com/">
-          <a href="https://www.nextacademy.com/" target="_blank" class="logotxt">NEXT Academy</a><br><br>     
- 
-          <img class="productFavicon" src="https://www.google.com/s2/favicons?domain=http://www.linkedin.com/">
-          <a target="_blank" class="logotxt" href="https://my.linkedin.com/in/nafiz-a12">Linkedin</a>  
-  </div>
-</div>
+  <header>
+    <a href="#" class="logo-holder">
+      <div class="logo-text">Nafiz</div>
+    </a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="toggleMobileMenu();" aria-label="menu">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 7h14M5 12h14M5 17h10"></path>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO section (combined) -->
+    <section class="hero container">
+      <div class="hero-blue">
+        <div>
+          <h1><small>Hi I'm a</small></h1>
+          <p>⚙️ Mechatronics Engineer<br>
+            💻 Full Stack Developer<br>
+            🌏 Mandarin-English Interpreter<br>
+            🚀 Building helpful, innovative solutions — available remotely
+          </p>
+          <div class="social-links">
+            <a target="_blank" href="http://linkedin.com/in/nafiz-a12">
+              <img src="https://i.ibb.co/hFH37nx7/linkedin.png" alt="LinkedIn" width="48">
+            </a>
+
+            <a target="_blank" href="https://veyfuture.netlify.app/" style="background:#f8f0eb; padding:6px 18px; border-radius:40px; font-weight:500; font-size:0.8rem; color:#2d1f18; border:1px solid rgba(200,170,155,0.2); box-shadow:0 2px 8px rgba(130,90,70,0.05); transition:0.3s; display:inline-block; text-decoration:none;" 
+                onmouseover="this.style.background='#f5ece6';this.style.transform='translateY(-2px)'" 
+                onmouseout="this.style.background='#f8f0eb';this.style.transform='translateY(0)'">
+                  VeyFuture Studio
+                </a>
+
+                <a href="mailto:veyfuture@outlook.com" style="background:#b88d7c; padding:6px 18px; border-radius:40px; font-weight:500; font-size:0.8rem; color:#fff; border:none; box-shadow:0 2px 12px rgba(176,122,100,0.2); transition:0.3s; display:inline-block; text-decoration:none;" 
+                onmouseover="this.style.background='#9a6b55';this.style.transform='translateY(-2px)'" 
+                onmouseout="this.style.background='#b07a64';this.style.transform='translateY(0)'">
+                  Contact
+                </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-yellow">
+        <img src="https://i.ibb.co/8kGHhC5/me.jpg" alt="Nafiz profile">
+      </div>
+    </section>
+    <section>
+
+</section>
+    <!-- logos marquee -->
+    <section class="logos container">
+      <div class="marquee">
+        <div class="track">
+          <img src="https://i.ibb.co/SXpgw82R/html.png" alt="HTML">
+          <img src="https://i.ibb.co/mw4xfkV/css.png" alt="CSS">
+          <img src="https://i.ibb.co/zWLdF98q/javascript.png" alt="JS">
+          <img src="https://i.ibb.co/jP5Gv1QK/react.png" alt="React">
+          <img src="https://i.ibb.co/Z1cB3LrP/vscode.png" alt="VS Code">
+          <img src="https://i.ibb.co/r2VvdZzh/python.png" alt="Python">
+          <img src="https://i.ibb.co/SXpgw82R/html.png" alt="HTML">
+          <img src="https://i.ibb.co/mw4xfkV/css.png" alt="CSS">
+          <img src="https://i.ibb.co/zWLdF98q/javascript.png" alt="JS">
+          <img src="https://i.ibb.co/jP5Gv1QK/react.png" alt="React">
+          <img src="https://i.ibb.co/Z1cB3LrP/vscode.png" alt="VS Code">
+          <img src="https://i.ibb.co/r2VvdZzh/python.png" alt="Python">
+                 <img src="https://i.ibb.co/SXpgw82R/html.png" alt="HTML">
+          <img src="https://i.ibb.co/mw4xfkV/css.png" alt="CSS">
+          <img src="https://i.ibb.co/zWLdF98q/javascript.png" alt="JS">
+          <img src="https://i.ibb.co/jP5Gv1QK/react.png" alt="React">
+          <img src="https://i.ibb.co/Z1cB3LrP/vscode.png" alt="VS Code">
+          <img src="https://i.ibb.co/r2VvdZzh/python.png" alt="Python">
+          <img src="https://i.ibb.co/SXpgw82R/html.png" alt="HTML">
+          <img src="https://i.ibb.co/mw4xfkV/css.png" alt="CSS">
+          <img src="https://i.ibb.co/zWLdF98q/javascript.png" alt="JS">
+          <img src="https://i.ibb.co/jP5Gv1QK/react.png" alt="React">
+          <img src="https://i.ibb.co/Z1cB3LrP/vscode.png" alt="VS Code">
+          <img src="https://i.ibb.co/r2VvdZzh/python.png" alt="Python">
+        </div>
+      </div>
+    </section>
+<p style="text-align: center; margin-bottom: 1.2rem;">
+  <span style="background: #f0e0d8; padding: 0.4rem 2rem; border-radius: 60px; font-size: 0.85rem; font-weight: 600; color: #3d2b21; letter-spacing: 1px; box-shadow: 0 2px 12px rgba(176, 122, 100, 0.1);">⚡ open for remote work</span>
+</p>
+    <!-- projects -->
+    <section id="projects" class="work-experience container">
+      <h2>🛠️ Own Projects</h2>
+      <div class="jobs">
+      
+        <article>
+          <figure>
+            <div>
+              <img src="https://i.ibb.co/bgxdyvyG/Nfz-Travel.jpg" alt="NfzTravel">
+              <figcaption>NfzTravel</figcaption>
+            </div>
+          </figure>
+          <h3><a target="_blank" href="https://sites.google.com/view/nfztravel">NfzTravel</a></h3>
+          <div><a target="_blank" href="https://instagram.com/nfztravel">📸 Instagram</a></div>
+          <p>travel tips &amp; curated itineraries</p>
+        </article>
+        <article>
+          <figure>
+            <div>
+              <img src="https://i.ibb.co/yFMwnh5R/future-cvr.png" alt="Future Academy">
+              <figcaption>Future Academy</figcaption>
+            </div>
+          </figure>
+          <h3><a target="_blank" href="https://heyfutureacademy.netlify.app/">Future Academy</a></h3>
+          <p>teaching coding, robotics &amp; future skills</p>
+        </article>
+        <article>
+          <figure>
+            <div>
+              <img src="https://i.ibb.co/ymrMk5vs/gig-P.png" alt="VeyFuture" style="background:#decbc0;">
+              <figcaption>VeyFuture <span style="background:#e6d0c2; padding:0 10px; border-radius:30px; font-size:0.7rem;">studio</span></figcaption>
+            </div>
+          </figure>
+          <h3><a href="https://veyfuture.netlify.app/" >VeyFuture</a></h3>
+          <p>shape the future of your brand</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- footer / connect -->
+    <footer id="connect">
+      <div class="container">
+        <div>
+          <span style="font-size:1.5rem;">😊</span>
+          <span style="font-family:'Rancho', cursive; font-size:1.6rem; margin-left:6px;">Nafiz</span>
+        </div>
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap; align-items:center;">
+        <a target="_blank" href="http://linkedin.com/in/nafiz-a12" style="background:#f2e3da; padding:4px 18px; border-radius:60px; font-weight:500;">in</a>
+        <a href="mailto:veyfuture@outlook.com" >Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('menu');
+      if (menu) {
+        menu.classList.toggle('open');
+      }
+    }
+    // close menu on link click (optional)
+    document.querySelectorAll('#menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('menu');
+        if (menu) menu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>
